@@ -13,6 +13,12 @@
 | PJ10_quicknote | F:\T00\PJ10_quicknote | — | 简单测试项目（Python CLI）|
 | PJ11_classnote_jp | F:\T00\PJ11_classnote_jp\app | F:\T00\PJ11_classnote_jp\reference | Phase 1 进行中（React Native）|
 | PJ12_bookmarks | F:\T00\PJ12_bookmarks | — | 完成（Node.js + Express）|
+| PJ13_ai00_ui | F:\T00\PJ13_ai00_ui | — | 开发中（Electron，AI00图形界面）|
+| PJ14_email_agent | F:\T00\PJ14_email_agent | — | 开发中（邮件驱动任务执行）|
+| PJ15_ai00_publish | F:\T00\PJ15_ai00_publish | — | 开发中（AI00发布与宣传）|
+| PJ16_knowcard | F:\T00\PJ16_knowcard | — | 立项中（AI知识卡片·记忆系统）|
+| PJ17_ai_desk | F:\T00\PJ17_ai_desk | — | 立项中（VSCode风格AI工作台）|
+| PJ20_dementia_app | F:\T00\PJ20_dementia_app | — | 待规划（日本認知症App）|
 
 ---
 

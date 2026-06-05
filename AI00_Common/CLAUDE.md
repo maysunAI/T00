@@ -1,6 +1,6 @@
 # AI00_Common — 共通 AI 协作规则
 
-> 所有在 F:\T00\ 下的项目自动继承此规则。
+> 所有在本工作区下的项目自动继承此规则。
 > 内容通过商量后逐步填入。
 
 ---
@@ -9,8 +9,10 @@
 
 - 始终用中文回答
 - 用户说「XX文件XX行更新了」→ 只读指定行，不读整文件（省token）
-- 用户说「req XX行后」→ 先读 `F:\T00\temp01_req.md` 验证行数 → 若不足提示「文件可能未保存」→ 直接追加问答到 `F:\T00\temp03_reply.md` → 回复「Reply 已更新（第XX行）」并输出：`✅ req 第X-X行 → reply 第XX行`
+- 用户把 CLI 输出（终端命令结果）粘贴进 req → 在 reply 里用 `[CLI]` 标注来源，例：`[CLI] python main.py 的输出：`
+- 用户说「req XX行后」→ 先读 `temp01_req.md` 验证行数 → 若不足提示「文件可能未保存」→ 直接追加问答到 `temp03_reply.md` → 回复「Reply 已更新（第XX行）」并输出：`✅ req 第X-X行 → reply 第XX行`
 - 用户说「清空沟通文件」→ 先将3个temp文件内容归档到 `_archive/YYYYMMDD_comms.md`，再清空内容（保留标题行）
+- 用户说「草稿 XX行更新了，拷贝到req」→ 读 `temp02_草稿.md` 第XX行后内容 → 追加到 `temp01_req.md` 末尾 → 按新内容回答 → 写 reply
 - 复杂问题回答默认考虑 **5W1H**（What/Why/Who/When/Where/How）；是/否类简单问题不强制展开
 - 默认「快速建议模式」：给1个推荐方案直接执行，完成后告知结果；用户说「给我几个选项」「我想讨论一下」「先不做」时切换到讨论模式；不满意时用户说「换个方案」或「回滚」
 - 回答涉及其他文档定义的概念时，末尾加 `📎 相关文档：[路径] — [说明]`
@@ -37,6 +39,10 @@ req: 到第X行 ✅ / 第X行后 待处理
 ## rules/（开发规范）
 @rules/R00_file_classification.md
 @rules/R05_agent_roles.md
+@rules/R06_trust_levels.md
+@rules/R07_github_workflow.md
+@rules/R08_search_first.md
+@rules/R09_requirement_estimation.md
 
 ## docs/AI_GUIDE/（AI 使用指南）
 - AI001_提示词手册.md / AI002_会话规则.md / AI003_触发方式.md
@@ -49,6 +55,26 @@ req: 到第X行 ✅ / 第X行后 待处理
 - `/ai-developer` — AI 应用开发模式
 
 ---
+
+## 建项目触发规则
+
+用户说「**建项目 xxx**」时，自动执行：
+1. 查 PROJECTS_INDEX.md 确定下一个 PJ 编号（如 PJ14）
+2. 建文件夹 `PJ##_xxx\`（在工作区根目录下）
+3. 在文件夹内建 `CLAUDE.md`（内容：`# PJ##_xxx\n`）
+4. 在 PROJECTS_INDEX.md 添加一行注册
+5. 回复「✅ PJ##_xxx 已建好，可以开始聊了。在 req 里写需求即可。」
+
+## 2000行备份规则
+
+每次处理完 req 后，检查 `temp01_req.md` 和 `temp03_reply.md` 行数：
+- 超过 2000 行 → 在合适段落处截断 → 备份到 `AI00_Common/_docs/discussion/YYYYMMDD_req_backup.md` → 清空（保留标题行）→ 提示用户备份位置
+
+## Git 规则
+
+- 重大变更前（新建多个文件、修改规则、删除文件）先 commit
+- 出错后：`git reset --hard HEAD~1` 回滚
+- 格式：`git add .` + `git commit -m "简短描述"`
 
 ## Auto-Install 规则（工具自动安装）
 
@@ -81,7 +107,7 @@ req: 到第X行 ✅ / 第X行后 待处理
 
 用户说「再见」时，自动执行（无需确认，最高权限，可继续完成未尽任务）：
 
-**① 追加完整记录到 `F:\T00\AI00_Common\_docs\discussion\SESSION_LOG.md`（L2，人看）**
+**① 追加完整记录到 `AI00_Common/_docs/discussion/SESSION_LOG.md`（L2，人看）**
 ```
 ## [日期]
 ### 做了什么
@@ -90,12 +116,12 @@ req: 到第X行 ✅ / 第X行后 待处理
 - [待续事项]
 ```
 
-**② 更新 `F:\T00\RESUME.md`（L1，AI下次会话读）**
+**② 更新 `RESUME.md`（L1，AI下次会话读）**
 写入：上次日期 / 做了什么（3-5条）/ 下一步（2-3条）/ 快速上下文
 
 **③ 输出下次开始命令**
 ```
-请读取 F:\T00\RESUME.md 继续上次的工作。
+请读取 RESUME.md 继续上次的工作。
 ```
 
 > 「再见」= 授予最高权限：可删除文件、自动安装、直接执行，无需逐步确认。
