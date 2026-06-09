@@ -87,6 +87,30 @@ T00/
 
 ---
 
+## Help 文档系统
+
+AI00 内置 39 篇使用指南，覆盖从入门到高级的全部用法。
+
+| 类别 | 文件 | 内容 |
+|------|------|------|
+| 入门 | H10_getting_started.md | 5 分钟上手 |
+| 工作流 | H02_req_reply_workflow.md | req→reply 完整流程 |
+| 命令 | H05_slash_commands.md | 全部 Slash 命令说明 |
+| 发布 | H13_github_publish.md | GitHub 发布指南 |
+| 提示词 | H25_prompt_cheatsheet.md | 常用触发词速查 |
+| … | [查看全部 39 篇](https://github.com/maysunAI/help) | |
+
+**生成合并 HTML**（单文件，手机可用）：
+
+```powershell
+# 自动合并所有 H*.md 为 T00_HELP.html
+.\AI00_Common\_docs\gen_help_html.ps1
+```
+
+**在线阅读**：发布到 `maysunAI/help` repo（GitHub Pages 开启后可手机访问）
+
+---
+
 ## 使用协议
 
 [MIT License](LICENSE) — 自由使用、修改、分发。
