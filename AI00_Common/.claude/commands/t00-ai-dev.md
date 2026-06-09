@@ -1,5 +1,5 @@
 ---
-name: ai-developer
+name: t00-ai-dev
 description: AI 应用开发模式 — Use when building AI apps, RAG, LLM applications, Claude API, or prompt engineering.
 ---
 

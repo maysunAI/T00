@@ -1,4 +1,9 @@
-# /token-mode — 切换到省 token 模式
+---
+name: t00-mode-token
+description: 切换到省 token 模式 — AI 使用 R##_ 版本规则文件，忽略易懂版文件。
+---
+
+# /t00-mode-token — 切换到省 token 模式
 
 切换 AI00 到省 token 模式：AI 使用 `R##_` 版本规则文件，忽略 `易懂版`（无 R 前缀）文件。
 

@@ -1,4 +1,9 @@
-# /human-mode — 切换到易懂模式
+---
+name: t00-mode-human
+description: 切换到易懂模式 — AI 使用无 R 前缀的易懂版规则文件，并自动补全缺失的易懂版。
+---
+
+# /t00-mode-human — 切换到易懂模式
 
 切换 AI00 到易懂模式：AI 使用无 R 前缀的易懂版规则文件（如 `CodeRules.md`），并自动从省 token 版生成缺失的易懂版。
 

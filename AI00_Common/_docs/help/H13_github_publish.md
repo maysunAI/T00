@@ -65,8 +65,8 @@ temp02_草稿.md
 temp03_reply.md
 RESUME.md
 REQ_STATUS.md
-_archive/
-_personal/
+Z01_archive/
+Z02_personal/
 tasks/
 *.log
 token.json

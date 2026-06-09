@@ -1,5 +1,5 @@
 ---
-name: git-helper
+name: t00-git
 description: Git 操作助手 — Use when working with Git commits, branches, merge conflicts, pull requests, or version control.
 ---
 

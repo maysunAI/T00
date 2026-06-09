@@ -9,9 +9,9 @@
 
 | 我想做的事 | 怎么做 |
 |-----------|--------|
-| 问AI一个问题 | 写进 Req1.md → 告诉AI「req1 X行后」|
-| 草稿，先不发 | 写进 Req2.md，准备好了再告诉AI |
-| 看AI的回答 | 打开 Reply.md，Ctrl+Shift+P → revert 刷新 |
+| 问AI一个问题 | 写进 temp01_req.md → 告诉AI「req X行后」|
+| 草稿，先不发 | 写进 temp02_草稿.md，准备好了再告诉AI |
+| 看AI的回答 | 打开 temp03_reply.md，Ctrl+Shift+P → revert 刷新 |
 | 结束会话 | 说「再见」→ AI自动存档 + 给下次开始命令 |
 | 下次开始 | 复制「再见」后AI给的命令，粘贴进Claude |
 | /clear后恢复 | 说「请读 RESUME.md」|
@@ -21,8 +21,8 @@
 ## 告诉AI行号的格式（最常用）
 
 ```
-req1 X行后     ← Req1.md第X行后有新内容
-req2 X行后     ← Req2.md第X行后有新内容
+req X行后      ← temp01_req.md 第X行后有新内容
+草稿X以后更新  ← temp02_草稿.md 第X行后有新内容
 ```
 
 **注意：说之前先保存文件（Ctrl+S）**
@@ -34,15 +34,15 @@ req2 X行后     ← Req2.md第X行后有新内容
 ```
 F:\T00\
 │
-├── Req1.md         ← 你 → AI（主要沟通文件）
-├── Req2.md         ← 你的草稿（写好了再告诉AI）
-├── Reply.md        ← AI → 你（AI的回答都在这）
+├── temp01_req.md   ← 你 → AI（主要沟通文件）
+├── temp02_草稿.md  ← 你的草稿（写好了再告诉AI）
+├── temp03_reply.md ← AI → 你（AI的回答都在这）
 │
 ├── AI00_Common\
-│   ├── _docs\help\    ← 你看的帮助文档（H01-H08）
-│   ├── rules\         ← AI用的规则（R00-R04）
+│   ├── _docs\help\    ← 你看的帮助文档（H00-H36）
+│   ├── rules\         ← AI用的规则（R01/R03/R05-R07/R09-R10，共7个）
 │   ├── docs\AI_GUIDE\ ← AI用的指南（AI001-AI008）
-│   └── .claude\commands\ ← Slash命令（/session-end等）
+│   └── .claude\commands\ ← Slash命令（/t00-xxx等，共19个）
 │
 └── tasks\          ← 任务列表（TASK_INDEX.md总览）
     └── T00X_xxx.md ← 每个任务一个文件
@@ -56,22 +56,36 @@ F:\T00\
 
 | 说这个 | AI做的事 |
 |--------|---------|
-| `req1 X行后` | 读Req1.md从X行 → 回答 → 写Reply |
+| `req XX行后更新` | 读 req 从 XX 行后 → 回答 → 写 reply |
 | `再见` | 存SESSION_LOG + 输出下次开始命令 |
 | `req状态` | 告诉你哪些行处理了，哪些没有 |
+| `XX-XX 保存` | 把 reply 该范围内容保存到合适文件 |
+| `保存` / `全部保存` | 执行 reply 末尾📦列表 |
+| `good` / `perfect` / `not good` | 行为校准（记住 + 保持 / 调整）|
+| `perfect，写入规则` | 固化到 CLAUDE.md |
+| `建项目 xxx` | 自动建 PJxx 文件夹 + 注册 |
 | `给我几个选项` | 切换到讨论模式（不直接执行）|
-| `先不做` | 只讨论，不执行 |
-| `换个方案` | AI重新提一个方案 |
+| `先不做` / `换个方案` | 暂缓 / 切换备选方案 |
+| `直接做，不用评估` | 跳过预估，立即执行 |
+| `清空沟通文件` | 备份后清空 temp 文件（需确认）|
+
+> 完整指令列表见：H25_prompt_cheatsheet.md
 
 ---
 
-## Slash 命令
+## Slash 命令（常用）
 
 | 命令 | 用途 |
 |------|------|
-| `/session-end` | 会话结束存档（同「再见」）|
-| `/git-helper` | Git操作辅助 |
-| `/ai-developer` | 切换到AI应用开发模式 |
+| `/t00-session-end` | 会话结束存档（同「再见」）|
+| `/t00-git` | Git 操作辅助 |
+| `/t00-ai-dev` | 切换到 AI 应用开发模式 |
+| `/t00-estimate` | 需求预估 + 完成度报告 |
+| `/t00-publish` | 发布项目到 GitHub |
+| `/t00-new-pj` | 新建项目（自动分配编号）|
+| `/t00-help` | 查看所有命令 |
+
+> 完整19个命令见：H28_slash_commands_guide.md
 
 ---
 
@@ -87,7 +101,7 @@ F:\T00\
 
 | 文件夹样式 | 规则 | 给谁 | 例子 |
 |-----------|------|------|------|
-| `_` 前缀 | `_docs/` `_archive/` | **你** | `_docs/help/H01.md` |
+| `_` 前缀 / `Z` 前缀 | `_docs/` `Z01_archive/` `Z02_personal/` | **你** | `_docs/help/H01.md` |
 | 无前缀 | `rules/` `docs/` `projects/` | **AI** | `rules/R00.md` |
 | 根目录大写 | `CLAUDE.md` `RESUME.md` | **双方（自动加载）** | — |
 

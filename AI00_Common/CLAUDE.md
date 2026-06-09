@@ -7,26 +7,65 @@
 
 ## 沟通规则
 
-- 始终用中文回答
+> **⚠️ 最重要规则：所有实质性回答必须写进 `temp03_reply.md`，CLI 只输出简短确认（如「Reply 已更新（第XX行）」），不重复 reply 内容。reply 清空后继续写，不能遗忘。**
+
+- **始终用中文回答，无论读了多少日文/英文内容，输出必须是中文。禁止在回复中使用日文。**
+- 用户说「req更新」或「草稿更新」→ 先读文件验证行数：实际内容行 ≥ 用户说的行号 → 正常处理；不足 → 提示「文件可能未保存」，等用户确认
 - 用户说「XX文件XX行更新了」→ 只读指定行，不读整文件（省token）
 - 用户把 CLI 输出（终端命令结果）粘贴进 req → 在 reply 里用 `[CLI]` 标注来源，例：`[CLI] python main.py 的输出：`
 - 用户说「req XX行后」→ 先读 `temp01_req.md` 验证行数 → 若不足提示「文件可能未保存」→ 直接追加问答到 `temp03_reply.md` → 回复「Reply 已更新（第XX行）」并输出：`✅ req 第X-X行 → reply 第XX行`
-- 用户说「清空沟通文件」→ 先将3个temp文件内容归档到 `_archive/YYYYMMDD_comms.md`，再清空内容（保留标题行）
+- 用户说「清空沟通文件」→ 先将3个temp文件内容归档到 `Z01_archive/YYYYMMDD_comms.md`，再清空内容（保留标题行）；**清空时保留 reply 最后一个 ══════ 区块不删除**（下次会话可直接看到上次结尾）
 - 用户说「草稿 XX行更新了，拷贝到req」→ 读 `temp02_草稿.md` 第XX行后内容 → 追加到 `temp01_req.md` 末尾 → 按新内容回答 → 写 reply
+- 用户说「**草稿更新**」→ 读 `temp02_草稿.md` 全部内容 → 追加到 req 末尾 → 按内容回答 → 写 reply → **清空草稿**（保留标题行）
+- 用户说「**草稿X以后更新**」→ 读 `temp02_草稿.md` 第X行后内容 → 追加到 req 末尾 → 回答 → 写 reply → **清空草稿第X行以后内容**
 - 复杂问题回答默认考虑 **5W1H**（What/Why/Who/When/Where/How）；是/否类简单问题不强制展开
 - 默认「快速建议模式」：给1个推荐方案直接执行，完成后告知结果；用户说「给我几个选项」「我想讨论一下」「先不做」时切换到讨论模式；不满意时用户说「换个方案」或「回滚」
 - 回答涉及其他文档定义的概念时，末尾加 `📎 相关文档：[路径] — [说明]`
+- 用户说「**XX-XX 保存**」→ 找 reply 第XX-XX行内容 → 判断最适合的文件 → 保存 → 回复「✅ 已保存到 [路径]」
+
+### 📦 建议保存项规则
+
+每个子答案下面立刻写保存建议，不等到整个块结束：
+```
+📦 [内容简述] → [建议文件路径]
+```
+用户说「保存」「全保存」或「XX行保存」时立即执行。Reply 内容必须在会话结束前保存，不能只存在 reply 里。
 
 ### temp03_reply.md 写入格式
 ```
 ══════════════════════════════
-❓ [2026-06-04 14:30] 问题原文
-原文：req 第X-X行
-───────────────────────────────
-💬 AI 回答内容
+❓ [日期 HH:MM]
+原文：
+1. （req 原文逐字）
+2. （req 原文逐字）
+3. （req 原文逐字）
 
-📌 req 第X行 → reply 第XX行 ✅
+AI整理后的问题（mapping 原文）
+1. (原文 [1][2]) 整理后的问题
+2. (原文 [3]) 整理后的问题
+───────────────────────────────
+回答
+
+1. (原文 [1][2]) 问题标题
+答案
+📦 [如有保存建议，写在这里]
+
+2. (原文 [3]) 问题标题
+答案
+📦 [如有保存建议，写在这里]
+
+📌 req 第X-X行 → reply 第XX行 ✅
 ```
+> ⚠️ `reply 第XX行` = 本条回答的 `══════` 所在行号，写完后用 Grep 确认，**禁止写「此处」**。
+
+**规则：**
+- **「原文」= 整段贴入**（逐字），req 清空后 reply 也能看懂
+- **⚠️ 禁止用描述代替原文**：`（示例：...）` `（原文大意：...）` 等都是错的，必须贴真实原文
+- **[n] 标注**：原文有多个条目时，AI 在每条前加 `[1]` `[2]` 等序号（不改原文内容），供 mapping 引用
+- **mapping 格式**：标题行写「AI整理后的问题（mapping 原文）」；每个问题用 `(原文 [1][2])` 注明对应哪几条原文
+- 1-2个简单问题 → 省略「AI整理后的问题」，直接回答
+- 📦 保存建议写在每个答案下面，不等到末尾
+- req 可以写在 `temp01_req.md` 也可以临时写在项目 CLAUDE.md 的 `## reply` 区域
 
 ### 用户问「req状态」时回答格式
 ```
@@ -37,22 +76,52 @@ req: 到第X行 ✅ / 第X行后 待处理
 ---
 
 ## rules/（开发规范）
-@rules/R00_file_classification.md
-@rules/R05_agent_roles.md
 @rules/R06_trust_levels.md
-@rules/R07_github_workflow.md
-@rules/R08_search_first.md
-@rules/R09_requirement_estimation.md
+
+> **子Agent摘要（R05）**：小任务直接做；大任务（5+文件）派子Agent。
+> 触发词：「帮我搜」→ Explore；「帮我规划」→ Plan；「审查」→ code-review
+> 完整规则按需读取：R00/R05/R07-R09，或直接用 `/estimate` `/publish` `/new-project`
 
 ## docs/AI_GUIDE/（AI 使用指南）
 - AI001_提示词手册.md / AI002_会话规则.md / AI003_触发方式.md
 - AI004_claude_code技巧.md / AI005_prompt技巧.md / AI006_rules技巧.md
 - AI007_memory技巧.md / AI008_skills技巧.md / AI_一览.md
 
-## .claude/commands/（Slash 命令）
-- `/session-end` — 会话结束存档
-- `/git-helper` — Git 操作
-- `/ai-developer` — AI 应用开发模式
+## .claude/commands/（Slash 命令，全部 t00- 前缀）
+- `/t00-session-end` — 会话结束存档（支持 Handoff 接近 context 上限时提前触发）
+- `/t00-git` — Git 操作助手
+- `/t00-ai-dev` — AI 应用开发模式
+- `/t00-estimate` — 需求预估 + 完成度报告（R09）
+- `/t00-perf-check` — 检查 Claude 效率配置（@include 行数/skills/hooks）
+- `/t00-publish` — 发布项目到 github-pub
+- `/t00-new-pj` — 新建项目（自动分配编号）
+- `/t00-compact` — 极简输出模式（压缩 token，去除废话）
+- `/t00-research` — 竞品研究 + 可行性分析
+- `/t00-browse` — Playwright 打开网页截图
+- `/t00-hot` — 热点话题搜索
+- `/t00-pj-status` — 查询所有项目状态
+- `/t00-mode-token` — 切换省 token 模式
+- `/t00-mode-human` — 切换易懂模式
+- `/t00-backup` — 备份操作
+- `/t00-capture` — 截图/捕获
+- `/t00-status` — T00 状态总览
+- `/t00-help` — 显示帮助
+
+---
+
+## 项目内容存放规则
+
+**项目相关内容必须存到该项目文件夹，不要散落在 T00 根目录或 reply 里。**
+
+| 内容类型 | 存放位置 |
+|---------|---------|
+| 项目需求、确认的功能 | `PJxx_xxx/REQUIREMENTS.md` |
+| 设计讨论、架构想法 | `PJxx_xxx/IDEAS.md` 或 `PJxx_xxx/CLAUDE.md` |
+| 未来功能（暂不做）| `PJxx_xxx/FUTURE_FEATURES.md` |
+| 框架通用规则 | `AI00_Common/rules/` |
+| 跨项目通用内容 | `AI00_Common/` |
+
+理由：T00 根目录有大量不相关内容，搜索 PJ90 时可能返回 PJ01 的内容，效率低。
 
 ---
 
@@ -64,6 +133,33 @@ req: 到第X行 ✅ / 第X行后 待处理
 3. 在文件夹内建 `CLAUDE.md`（内容：`# PJ##_xxx\n`）
 4. 在 PROJECTS_INDEX.md 添加一行注册
 5. 回复「✅ PJ##_xxx 已建好，可以开始聊了。在 req 里写需求即可。」
+
+## Reply/Req 备份清空规则
+
+- **清空操作必须征得用户同意**，未经同意不执行
+- 回答问题期间：不清空，只备份 **reply**（不备份req/草稿）
+- **清空 reply 时自动备份**：执行清空时直接备份，无需另行确认备份
+- 备份文件名格式：`reply_YYYYMMDD_HHmm.md`（如 `reply_20260609_2327.md`）；同名时加序号：`reply_20260609_2327_2.md`
+- 备份位置：`Z01_archive/`
+- 清空 = 用户明确说「清空」后才执行
+- **清空前必须**：扫描 reply 全文，列出所有「待确认事项」（Task/错误/待用户回复的问题），用户确认全部处理后才能清空
+
+## 跳过文件夹规则（性能优化）
+
+以下文件夹 AI 默认不访问（不读取、不搜索）：
+- `Z01_archive/`（历史存档）
+- `Z02_personal/`（个人文件）
+- `PJzz_arch_old/`（CK00历史存档）
+- `T01_AI_Dev_chatgpt/` `T02_AI_Dev_Gemini/` `T03_AI_ClaudeCode/` `T04_AIClaudeCodeMultiAgent/` `T05_AIClaudeOpt/` `T06_AI_PM_20web3/` `T07_AI_PM_stocksChina/` `T08_AI_ide/` `T99_AI_PM_allMini/`（历史项目）
+
+**用户明确让我访问上述文件夹时**：先提醒「⚠️ 此文件夹是历史/存档，访问会增加 token 消耗，确认继续？」
+
+## Help HTML 自动更新规则
+
+用户说「**更新 help HTML**」或新增/修改了任何 `_docs/help/H*.md` 文件后：
+- 自动运行 `F:\T00\AI00_Common\_docs\gen_help_html.ps1`
+- 生成 `F:\T00\AI00_Common\_docs\T00_HELP.html`（单文件，手机可用）
+- 告知用户：「✅ T00_HELP.html 已更新（X篇）」
 
 ## 2000行备份规则
 
@@ -111,7 +207,7 @@ req: 到第X行 ✅ / 第X行后 待处理
 ```
 ## [日期]
 ### 做了什么
-- [要点列表]
+- [要点列表]（重要内容注明 reply 第XX行 可查详情）
 ### 未完成
 - [待续事项]
 ```
@@ -124,9 +220,23 @@ req: 到第X行 ✅ / 第X行后 待处理
 请读取 RESUME.md 继续上次的工作。
 ```
 
+**④ 输出 SESSION_LOG 文件位置**
+```
+📖 本次会话记录：F:\T00\AI00_Common\_docs\discussion\SESSION_LOG.md
+```
+
 > 「再见」= 授予最高权限：可删除文件、自动安装、直接执行，无需逐步确认。
 
 ---
+
+## Task 建单独文件规则
+
+任务满足以下任一条件时，在 `tasks/` 下建独立文件（如 `T035_demo.md`）：
+- 有 3 步以上子任务
+- 需要设计文档（D01, D02…）
+- 预计跨 2 次以上会话
+
+普通单行任务继续记在 TASK_INDEX.md。
 
 ## 手动修改保护规则（R03）
 

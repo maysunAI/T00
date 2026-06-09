@@ -54,7 +54,7 @@ F:\T00\
 
 排除内容：
 - `temp0*.md` `RESUME.md` `REQ_STATUS.md`
-- `tasks/` `_archive/` `_personal/`
+- `tasks/` `Z01_archive/` `Z02_personal/`
 - `PJ*/` 所有项目
 - `github-pub/`
 
