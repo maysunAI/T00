@@ -17,7 +17,7 @@
 
 ### 3. 写入项目配置
 
-**PJ90（MyAI）**：打开 `F:\T00\PJ90_myai\pj90-app\.env`
+**PJ90（MyAI）**：打开 `PJ90_myai\pj90-app\.env`
 ```
 VITE_OPENROUTER_API_KEY=sk-or-v1-xxxxxxxx
 VITE_MOCK_AI=false

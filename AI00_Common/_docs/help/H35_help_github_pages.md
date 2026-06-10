@@ -20,8 +20,10 @@
 
 ## 步骤一：生成最新 HTML
 
+> 注：以下命令均以 T00 根目录为起始路径（例如 `F:\T00`）。
+
 ```powershell
-cd F:\T00\AI00_Common\_docs
+cd AI00_Common\_docs
 .\gen_help_html.ps1
 ```
 
@@ -44,16 +46,16 @@ gh repo create maysunAI/t00-help --public --description "T00 Framework Help Docu
 ## 步骤三：上传 HTML 文件
 
 ```bash
-# 创建本地文件夹
-mkdir F:\T00\PJ02_publish\t00-help
-cd F:\T00\PJ02_publish\t00-help
+# 创建本地文件夹（从 T00 根目录运行）
+mkdir PJ02_publish\t00-help
+cd PJ02_publish\t00-help
 
 # 初始化 git
 git init
 git remote add origin https://github.com/maysunAI/t00-help.git
 
 # 复制 HTML 文件（改名为 index.html）
-copy F:\T00\AI00_Common\_docs\T00_HELP.html index.html
+copy ..\..\AI00_Common\_docs\T00_HELP.html index.html
 
 # 提交推送
 git add index.html
@@ -81,8 +83,8 @@ https://maysunai.github.io/t00-help/
 ## 步骤五：更新流程（每次更新后）
 
 ```bash
-cd F:\T00\PJ02_publish\t00-help
-copy /Y F:\T00\AI00_Common\_docs\T00_HELP.html index.html
+cd PJ02_publish\t00-help
+copy /Y ..\..\AI00_Common\_docs\T00_HELP.html index.html
 git add index.html
 git commit -m "update help docs $(date +%Y%m%d)"
 git push

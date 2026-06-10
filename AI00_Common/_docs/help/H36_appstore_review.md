@@ -1,5 +1,6 @@
 # H36 — App Store 更新审核说明
 
+> ⚠️ **项目专属文档**：本文内容为本实例 PJ90_myai / PJ11 的上架策略记录，非 T00 框架通用内容。
 > 适用：PJ90_myai 上架 Google Play / Apple App Store 后的维护策略
 
 ---

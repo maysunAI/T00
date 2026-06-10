@@ -41,7 +41,7 @@ T00 框架通过三个文件对抗这个问题：
 ## Where — 存档文件在哪里
 
 ```
-F:\T00\
+T00\
 ├── RESUME.md                              ← AI 下次读这个
 ├── AI00_Common\_docs\discussion\
 │   └── SESSION_LOG.md                     ← 人看的完整记录
@@ -71,7 +71,7 @@ F:\T00\
 你：再见
 AI：（自动更新 SESSION_LOG.md + RESUME.md）
 AI：请读取 RESUME.md 继续上次的工作。
-    📖 本次会话记录：F:\T00\AI00_Common\_docs\discussion\SESSION_LOG.md
+    📖 本次会话记录：AI00_Common\_docs\discussion\SESSION_LOG.md
 ```
 
 ### 下次恢复

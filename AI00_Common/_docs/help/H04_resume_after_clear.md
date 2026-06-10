@@ -16,19 +16,19 @@
 
 ### 恢复 AI00_Common 框架讨论
 ```
-请读取 F:\T00\AI00_Common\rules\R00_file_classification.md
+请读取 AI00_Common\rules\R00_file_classification.md
 我们继续讨论 AI00_Common 的命名规则。
 ```
 
 ### 恢复 T00 目录结构上下文
 ```
-请读取 F:\T00\AI00_Common\_docs\discussion\CONTEXT.md
+请读取 AI00_Common\_docs\discussion\CONTEXT.md
 告诉我现在 AI00_Common 的进展和待完成的事项。
 ```
 
 ### 恢复任意项目（通用）
 ```
-请读取 F:\T00\AI00_Common\projects\PROJECTS_INDEX.md
+请读取 AI00_Common\projects\PROJECTS_INDEX.md
 然后读取 [项目docs路径]/CONTEXT.md
 告诉我项目现在的状态和下一步。
 ```

@@ -32,7 +32,7 @@ req X行后      ← temp01_req.md 第X行后有新内容
 ## 文件夹一眼看懂
 
 ```
-F:\T00\
+T00\
 │
 ├── temp01_req.md   ← 你 → AI（主要沟通文件）
 ├── temp02_草稿.md  ← 你的草稿（写好了再告诉AI）
@@ -91,7 +91,7 @@ F:\T00\
 
 ## 查看任务状态
 
-打开 `F:\T00\tasks\TASK_INDEX.md`，有全部任务的状态一览。
+打开 `tasks\TASK_INDEX.md`，有全部任务的状态一览。
 
 ---
 
