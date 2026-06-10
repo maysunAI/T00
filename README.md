@@ -1,116 +1,159 @@
-# AI00 — AI 协作框架
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-blueviolet)](https://claude.ai/claude-code)
+[![GitHub stars](https://img.shields.io/github/stars/maysunAI/T00?style=social)](https://github.com/maysunAI/T00/stargazers)
 
-> 让每次 AI 对话都可追溯、可复用
+# AI00 — AI Collaboration Framework for Claude Code
 
----
+> **Stop losing your AI conversations. Every answer is tracked, every session continues.**
 
-## 解决什么问题
-
-长期与 AI 合作时，最大的痛点是：
-**对话越来越长，找不到之前讨论过的内容。**
-
-AI00 用简单的 req→reply 工作流解决这个问题：需求写入固定文件，回答写入固定文件，每条回答都注明来源行号。
+[中文版](README_zh.md) · [Help Docs (42 articles)](AI00_Common/_docs/help/H00_help_index.md) · [Quick Start →](#30-second-quickstart)
 
 ---
 
-## 30 秒入门
+## The Problem
 
-**第 1 步：在 `temp01_req.md` 写需求**
+You've been working with AI for hours. The conversation grows long.
+Then you start a new session — and **everything is gone.**
+
+- Can't find the decision you made 3 sessions ago
+- AI has no idea what you built last week
+- Every session starts from scratch
+
+**AI00 solves this with one simple rule: write requests in a file, read answers from a file.**
+
+---
+
+## 30-Second Quickstart
+
+**Step 1 — Write your request in `temp01_req.md`**
 
 ```
-1. 检查登录功能有没有 bug
-2. 确认测试覆盖率
+1. Check if the login function has any bugs
+2. Confirm test coverage
 ```
 
-**第 2 步：AI 在 `temp03_reply.md` 整理后回答**
+**Step 2 — Tell the AI which line to start from**
+
+```
+req 1 onwards
+```
+
+**Step 3 — AI writes a tracked answer in `temp03_reply.md`**
 
 ```
 ══════════════════════════════
 ❓ [2026-06-10 10:30]
-原文：
-[1] 检查登录功能有没有 bug
-[2] 确认测试覆盖率
-
-AI整理后的问题（mapping 原文）
-1. (原文 [1]) 登录 bug 检查
-2. (原文 [2]) 测试覆盖率确认
+Original:
+[1] Check if the login function has any bugs
+[2] Confirm test coverage
 ───────────────────────────────
-回答
+1. Found session expiry bug — fixed in auth.js:42
 
-1. (原文 [1]) 发现 session 过期问题 — 已在 auth.js:42 修复
+2. Current coverage: 73%. Suggest adding login module tests.
 
-2. (原文 [2]) 当前覆盖率 73%，建议优先补充登录模块。
-
-📌 req 第 1-2 行 → reply 第 8 行 ✅
+📌 req line 1-2 → reply line 8 ✅
 ```
 
-**效果**：任何时候，`📌` 标记都能追溯到原始需求行，`(原文 [n])` 注明对应哪条需求。
+Every answer has a `📌` line number tag — **always traceable back to the original request.**
 
 ---
 
-## 目录结构
+## Who Is This For
+
+- Developers who use Claude Code daily
+- Solo builders who want to remember what they built
+- Anyone frustrated by losing AI context between sessions
+
+---
+
+## Features
+
+| Feature | AI00 | Plain CLAUDE.md | Cursor Rules |
+|---------|------|-----------------|--------------|
+| Line-number traceability | ✅ every answer | ❌ | ❌ |
+| Session auto-archive | ✅ RESUME.md | ❌ | ❌ |
+| Multi-project management | ✅ PROJECTS_INDEX | ❌ | ❌ |
+| 42 help articles | ✅ | ❌ | ❌ |
+| Slash commands (14) | ✅ | few | few |
+| Rule inheritance system | ✅ R01–R10 | single file | single file |
+| AI memory across sessions | ✅ | ❌ | ❌ |
+
+---
+
+## Key Trigger Words
+
+| Say this | AI does this |
+|---------|-------------|
+| `req line X onwards` | Read from line X, write answer to reply |
+| `new project xxx` | Auto-create folder + register in PROJECTS_INDEX |
+| `draft update` | Read draft → append to req → answer → clear draft |
+| `goodbye` | Auto-archive + update RESUME.md for next session |
+
+---
+
+## Directory Structure
 
 ```
 T00/
-├── CLAUDE.md                    ← 根规则（自动加载）
+├── CLAUDE.md                    ← Root rules (auto-loaded)
 ├── AI00_Common/
-│   ├── CLAUDE.md                ← 通用规则（含沟通协议）
-│   ├── rules/                   ← AI 行为规则（R01–R10）
-│   ├── .claude/commands/        ← Slash 命令
+│   ├── CLAUDE.md                ← Shared rules (workflow protocol)
+│   ├── rules/                   ← AI behavior rules (R01–R10)
+│   ├── .claude/commands/        ← Slash commands (/t00-*)
 │   └── projects/PROJECTS_INDEX.md
-├── temp01_req.md                ← 用户写需求
-├── temp02_草稿.md               ← 草稿区
-├── temp03_reply.md              ← AI 写回答
-└── PJxx_项目名/                  ← 各项目文件夹
+├── temp01_req.md                ← Write your requests here
+├── temp02_draft.md              ← Draft area
+├── temp03_reply.md              ← AI writes answers here
+└── PJxx_project-name/           ← Individual project folders
 ```
 
 ---
 
-## 关键触发词
+## Help Documentation
 
-| 说这句话 | AI 执行 |
-|---------|---------|
-| `req X行以后` | 从第 X 行读 req，回答写入 reply |
-| `建项目 xxx` | 自动建文件夹 + 注册到 PROJECTS_INDEX |
-| `草稿更新` | 读草稿 → 追加到 req → 回答 → 清空草稿 |
-| `再见` | 自动存档 + 更新 RESUME.md |
+42 articles covering everything from basics to advanced workflows.
 
----
+| Category | File | Content |
+|----------|------|---------|
+| Start here | H38_quick_start.md | 5-minute onboarding |
+| Workflow | H02_req_reply_workflow.md | Full req→reply flow |
+| Commands | H28_slash_commands_guide.md | All slash commands |
+| Publish | H13_github_publish.md | GitHub publishing guide |
+| Cheatsheet | H25_prompt_cheatsheet.md | All trigger words |
 
-## 特性
-
-- **中文优先**：所有回答输出中文
-- **行号追踪**：每条回答注明 req/reply 行号
-- **快速建议模式**：直接给推荐方案，不啰嗦
-- **自动存档**：会话结束自动更新 RESUME.md
-- **Slash 命令**：`/t00-session-end` `/t00-git` `/t00-new-pj` 等
-
----
-
-## Help 文档系统
-
-AI00 内置 39 篇使用指南，覆盖从入门到高级的全部用法。
-
-| 类别 | 文件 | 内容 |
-|------|------|------|
-| 入门 | H10_getting_started.md | 5 分钟上手 |
-| 工作流 | H02_req_reply_workflow.md | req→reply 完整流程 |
-| 命令 | H05_slash_commands.md | 全部 Slash 命令说明 |
-| 发布 | H13_github_publish.md | GitHub 发布指南 |
-| 提示词 | H25_prompt_cheatsheet.md | 常用触发词速查 |
-| … | [查看全部 39 篇](https://github.com/maysunAI/help) | |
-
-**生成合并 HTML**（单文件，手机可用）：
+**Generate a single HTML file** (readable on mobile):
 
 ```powershell
-# 自动合并所有 H*.md 为 T00_HELP.html
 .\AI00_Common\_docs\gen_help_html.ps1
 ```
 
-**在线阅读**：发布到 `maysunAI/help` repo（GitHub Pages 开启后可手机访问）
+---
+
+## Setup
+
+1. Clone this repo
+2. Open the folder in Claude Code (`claude` CLI or VS Code extension)
+3. Write your first request in `temp01_req.md`
+4. Tell Claude: `req 1 onwards`
+
+That's it. No installs, no config files, no API keys needed.
 
 ---
 
-## 使用协议
+## Contact
 
-[MIT License](LICENSE) — 自由使用、修改、分发。
+Questions or feedback? [Open an issue](https://github.com/maysunAI/T00/issues)
+
+GitHub: [@maysunAI](https://github.com/maysunAI)
+
+---
+
+## License
+
+[MIT License](LICENSE) — free to use, modify, and distribute.
+
+---
+
+> ⭐ **If AI00 saves you time, a star helps others find it.** ⭐
+>
+> [Star on GitHub →](https://github.com/maysunAI/T00)
