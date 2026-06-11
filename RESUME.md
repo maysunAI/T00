@@ -16,20 +16,19 @@
 
 ## 下一步（3条）
 
-1. **T00JP 仓库**：手动建 https://github.com/new → Owner: maysunAI, Name: T00JP → 建好后说「T00JP建好了」我放内容
-2. **KDP 新书填表**：打开 https://kdp.amazon.co.jp 登录后说「KDP登录好了」我接管 Playwright 继续填写书籍信息
-3. **快速变现**：根据 MARKET_ANALYSIS.md 建议，优先启动 PJ32_ai_copywriter（2周内上线最快变现）
+1. **KDP 原稿アップ**：https://kdp.amazon.co.jp/ja_JP/title-setup/kindle/AL66XC12K5YO4/details → 「保存して続行」→ .epub/.docx アップロード（chapter01+02 をまず Word 変換）
+2. **快速变现**：根据 MARKET_ANALYSIS.md 建议，优先启动 PJ32_ai_copywriter（2周内上线最快变现）
+3. **T00JP 继续完善**：https://github.com/maysunAI/T00JP — 可追加 docs/02_req_reply.md
 
 ## 快速上下文
 
 | 项目 | 状态 |
 |------|------|
-| PJ39_kdp | chapter01✅ chapter02✅，设计书示范✅，Excel工具✅，KDP登录待完成 |
+| PJ39_kdp | chapter01✅ chapter02✅，设计书示范✅，Excel工具✅，KDP下书き ASIN AL66XC12K5YO4✅ |
+| T00JP | ✅ 已建：https://github.com/maysunAI/T00JP（README+docs+samples+Excel工具）|
 | PJ32_ai_copywriter | 立项中，MARKET_ANALYSIS建议第一优先启动 |
 | PJ29_ai_card | 需填 .env（VITE_ANTHROPIC_API_KEY）才能运行 |
 | PJ20_dementia_app | 日本市场最高优先（政策顺风+空白市场）|
-| T00JP | 待手动建 GitHub 仓库（maysunAI/T00JP） |
-| README | 已更新 vscode_split_masked.png，待 git push |
 
 ## pending 摘要（完整在 temp04_pending.md）
 
