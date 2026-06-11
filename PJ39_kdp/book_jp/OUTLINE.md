@@ -38,10 +38,16 @@ Excel設計書（.xlsx）からシステムを復元する方法：
 
 ---
 
+## KDP登録状況
+
+- **ASIN**: AL66XC12K5YO4（下書き保存済み ✅ 2026-06-11）
+- **URL**: https://kdp.amazon.co.jp/ja_JP/title-setup/kindle/AL66XC12K5YO4/details
+- **次ステップ**: 「保存して続行」→ コンテンツ（.epub/.docx）アップロード
+
 ## KDP発行手順（備忘）
 
 1. Word/epub作成（Pandocで変換）
-2. KDP登録：https://kdp.amazon.co.jp
+2. KDP登録：https://kdp.amazon.co.jp ← 詳細入力済み
 3. 表紙：Canvaで作成（1600×2560px）
 4. 価格設定：¥499〜¥799
 5. 審査：1〜3日
