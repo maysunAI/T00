@@ -1,7 +1,7 @@
 # PROJECTS_INDEX — 项目注册表
 
 > 此文件只记录项目名和路径，不存实际内容。
-> 更新日期：2026-06-06
+> 更新日期：2026-06-11
 
 ---
 
@@ -36,7 +36,19 @@
 | PJ27_yapie_analysis | F:\T00\PJ27_yapie_analysis | 立项中（YAPIE竞品全面分析）|
 | PJ28_ai_agent | F:\T00\PJ28_ai_agent | 立项中（T00 AI Agent · L1内置/L2 API）|
 | PJ29_ai_card | F:\T00\PJ29_ai_card | 立项中（AI名片生成器·最快变现）|
+| PJ30_ai_dubbing | F:\T00\PJ30_ai_dubbing | 立项中（AI配音故事生成器）|
+| PJ31_ai_song | F:\T00\PJ31_ai_song | 立项中（AI情歌生成器·Yapie变现路径）|
+| PJ32_ai_copywriter | F:\T00\PJ32_ai_copywriter | 立项中（AI社媒文案生成器·最快上线）|
+| PJ33_ai_channel | F:\T00\PJ33_ai_channel | 立项中（AI内容频道自动运营·被动收入）|
+| PJ34_ai_naming | F:\T00\PJ34_ai_naming | 立项中（AI专业起名服务·高客单价·情感需求）|
+| PJ35_claude_md_gen | F:\T00\PJ35_claude_md_gen | 立项中（AI CLAUDE.md生成器·服务T00用户·与T00协同）|
+| PJ36_ai_meeting | F:\T00\PJ36_ai_meeting | 立项中（AI会议记录+行动清单·B2B高付费意愿）|
+| PJ37_ai_song_jp | F:\T00\PJ37_ai_song_jp | 立项中（AI日语情歌·J-Pop市场·PJ31日本版）|
+| PJ38_cross_market | F:\T00\PJ38_cross_market | 立项中（跨市场迁移框架·把中国成功APP复制到海外）|
+| PJ39_kdp | F:\T00\PJ39_kdp | 立项中（Amazon KDP电子书·虚拟产品·日本+美国市场）|
 | PJ90_myai | F:\T00\PJ90_myai | 开发中（MyAI个人助手·手机版·平台）← 最高优先 |
+| PJ91_ai_agent_l3 | F:\T00\PJ91_ai_agent_l3 | 立项中（AI Agent L3·Tool Use+记忆+自主规划）|
+| PJ92_myai_saas | F:\T00\PJ92_myai_saas | 立项中（MyAI SaaS化·多用户平台）|
 
 ---
 
