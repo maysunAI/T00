@@ -59,7 +59,7 @@ AI整理后的问题（mapping 原文）
 
 **效果**：`📌` 标记 + mapping 能追溯每条原始需求，再也不丢失。
 
-![VSCode 分屏工作（左：需求，右：回答）](AI00_Common/_docs/help/assets/vscode_split.png)
+![VSCode 分屏工作（左：需求，右：回答）](AI00_Common/_docs/help/assets/vscode_split_masked.png)
 
 ---
 

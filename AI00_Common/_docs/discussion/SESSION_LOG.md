@@ -4,6 +4,46 @@
 
 ---
 
+## [2026-06-10]
+
+### 做了什么
+- **Help 文档系统扩充**：新建 H38（快速开始）、H39（发布清单）、H40（Claude Code全局文件）；H00 加痛点钩子入口；HTML 更新至 42 篇
+- **新建 3 个项目**：PJ30_ai_dubbing（AI配音故事·微信小程序）、PJ91_ai_agent_l3（AI Agent L3）、PJ92_myai_saas（PJ90 SaaS化）；PROJECTS_INDEX 已注册
+- **PJ29 修复**：npm install 完成，可运行（需填 .env 中 VITE_ANTHROPIC_API_KEY）
+- **T00 推广执行**：README.md 全面改造（badges + 痛点 + 对比表 + Star 号召）；新建 README_zh.md；新建 PROMOTION.md（中英文推广文案库）
+- **PJ11 上架材料**：新建 STORE_MATERIALS.md（英文+日文描述、截图计划、隐私政策、上架清单）；决定以 Phase 1+2 MVP 先上架
+- **PJ30 策略确定**：微信小程序 + 腾讯云 TTS + 裂变策略写入 CLAUDE.md
+- **Reply/Req 清空备份**：备份至 Z01_archive/reply_20260610_1.md；P002-P010 写入 pending
+
+### 未完成（pending 清单 P002-P010）
+- P002 PJ29 填入 VITE_ANTHROPIC_API_KEY
+- P003/P004 Help 私有内容修复（F:\路径 + PJ专属H文件）
+- P005 VSCode 分栏截图
+- P007 PJ11 上架（截图+Play账号+build）
+- P008 GitHub Topics 手动添加（30秒操作）
+- P009 Reddit 注册 + 发帖（步骤见 reply 第283行）
+- P010 知乎/小红书/Product Hunt 发帖
+
+---
+
+## [2026-06-11]
+
+### 做了什么
+- **截图马赛克**：vscode_split_masked.png 生成（PIL脚本），README 更新引用，PJxx 后名称模糊处理（reply 第1436行）
+- **KDP书第2章**：chapter02.md 写完（10分セットアップ，8步实操，200行）；OUTLINE 第2章状态→完成
+- **示范设计书**：PJ39_kdp/samples/todo_system_design.md（5テーブル Todo管理システム，DDL+API仕様+画面仕様）
+- **Excel→MD转换工具**：PJ39_kdp/tools/excel_to_md.py（用于设计书→系统复原工作流）
+- **全项目市场分析**：子Agent分析39个项目，报告保存至 PJ01_maysunAI/MARKET_ANALYSIS.md；快速赚钱Top3: PJ32>PJ34>PJ29
+- **KDP 填表尝试**：Playwright 打开 KDP，输入邮箱，到达密码页（需用户手动继续）
+- **新建 Help H41-H48**：（上次会话，已完成）
+
+### 未完成
+- T00JP GitHub 仓库创建（gh未安装，需手动建：github.com/new，仓库名 T00JP）
+- KDP 新书填表（需密码+可能2FA，用户手动登录后可继续）
+- P002/P006/P007/P009/P011 见 temp04_pending.md
+
+---
+
 ## [2026-06-09]（第十三、十四、十五次合并）
 
 ### 做了什么
@@ -365,3 +405,33 @@
 - PJ20 未来功能已记录：LINE/WeChat/SMS/电话/119 通知（FUTURE_FEATURES.md）
 - PJ90 完善：Settings页、Memo、Todo UI、PWA配置 还未做
 - GitHub 发布：PJ90 + PJ20 两个产品完成后再做
+
+---
+
+## [2026-06-10]（第十六次）
+
+### 做了什么
+- **规则优化（8步流程）**：废弃 R00/R04/R08/R11（备份到 Z01_archive/20260610_rules_backup/），R08搜索模板并入R10，rules/ 剩7个（reply 第813行可查详情）
+- **T00 搜索索引**：新建 `AI00_Common/projects/T00_SEARCH_INDEX.md`（按技术栈/状态/功能域/优先级4维）
+- **新建3个项目**：PJ27_yapie_analysis / PJ28_ai_agent / PJ29_ai_card（reply 第670行）
+- **Help 更新**：H00加入H37、H06/H08更新规则树、T00_HELP.html重新生成（39篇，155KB）
+- **reply格式加时间**：`❓ [日期 HH:MM]`，CLAUDE.md和R01同步更新
+- **t00-rules-check skill**：追加8步规则优化流程
+- **GitHub发布准备**：PJ02_publish/T00/ 复制39个文件、本地 git commit 完成（a33fdb7）
+
+### 未完成
+- **GitHub 推送**：仓库不存在，需用户先在 GitHub 创建 `Jason00514/T00`，然后运行：`! git -C "F:\T00\PJ02_publish\T00" push -u origin master`
+- **T00-zh 版本**：英文版结构一致，但 README 未做成中文版
+
+### 续（同日第十七次）
+
+- **GitHub 推送成功**：仓库在 `maysunAI/T00`（非 Jason00514），已推送（reply 第948行）
+- **中文 README**：`README_zh.md` 已创建并推送到 maysunAI/T00
+- **PJ29 AI名片生成器**：完整代码写完（`PJ29_ai_card/app/`，Vite+React+SVG+Claude API，含免费计数+付费入口）
+- **PJ28 AI Agent L2**：完整代码写完（`PJ28_ai_agent/agent/`，Node.js+Anthropic SDK，4个工具+CLI交互）
+- **Google审核建议**：PJ11 ClassNote JP 最容易（reply 第1002行）
+
+### 未完成
+- **Node.js v24 崩溃**：PJ29/PJ28 无法运行，需降级：`winget install OpenJS.NodeJS.LTS`
+- **Help GitHub Pages**：未建 maysunAI/t00-help repo
+- **PJ26 MD工作室**：立项中，无代码
