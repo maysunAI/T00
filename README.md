@@ -2,126 +2,125 @@
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-blueviolet)](https://claude.ai/claude-code)
 [![GitHub stars](https://img.shields.io/github/stars/maysunAI/T00?style=social)](https://github.com/maysunAI/T00/stargazers)
 
-# AI00 — AI Collaboration Framework for Claude Code
+# AI00 — Claude Code AI 协作框架
 
-> **Stop losing your AI conversations. Every answer is tracked, every session continues.**
+> **再也不丢失 AI 对话上下文。每条回答可追溯，每次会话可接续。**
 
-[中文版](README_zh.md) · [Help Docs (42 articles)](AI00_Common/_docs/help/H00_help_index.md) · [Quick Start →](#30-second-quickstart)
-
----
-
-## The Problem
-
-You've been working with AI for hours. The conversation grows long.
-Then you start a new session — and **everything is gone.**
-
-- Can't find the decision you made 3 sessions ago
-- AI has no idea what you built last week
-- Every session starts from scratch
-
-**AI00 solves this with one simple rule: write requests in a file, read answers from a file.**
+[English](README_en.md) · [帮助文档（42篇）](AI00_Common/_docs/help/H00_help_index.md) · [快速开始 →](#30-秒入门)
 
 ---
 
-## 30-Second Quickstart
+## 解决什么问题
 
-**Step 1 — Write your request in `temp01_req.md`**
+你是否遇到过：
+
+- 和 AI 聊了几十轮，回头想找某个结论 — **完全找不到**
+- 开了新会话，AI 不知道你上次做了什么
+- 每次都要重新解释背景，浪费时间
+
+**AI00 用最简单的方式解决这个问题：需求写进固定文件，回答写进固定文件，每条都标行号。**
+
+---
+
+## 30 秒入门
+
+**第 1 步：在 `temp01_req.md` 写需求**
 
 ```
-1. Check if the login function has any bugs
-2. Confirm test coverage
+1. 检查登录功能有没有 bug
+2. 确认测试覆盖率
 ```
 
-**Step 2 — Tell the AI which line to start from**
+**第 2 步：告诉 AI 从哪行读**
 
 ```
-req 1 onwards
+req 1 以后
 ```
 
-**Step 3 — AI writes a tracked answer in `temp03_reply.md`**
+**第 3 步：AI 在 `temp03_reply.md` 整理后回答**
 
 ```
 ══════════════════════════════
 ❓ [2026-06-10 10:30]
-Original:
-[1] Check if the login function has any bugs
-[2] Confirm test coverage
+原文：
+[1] 检查登录功能有没有 bug
+[2] 确认测试覆盖率
 ───────────────────────────────
-1. Found session expiry bug — fixed in auth.js:42
+1. 发现 session 过期问题 — 已在 auth.js:42 修复
 
-2. Current coverage: 73%. Suggest adding login module tests.
+2. 当前覆盖率 73%，建议优先补充登录模块。
 
-📌 req line 1-2 → reply line 8 ✅
+📌 req 第 1-2 行 → reply 第 8 行 ✅
 ```
 
-Every answer has a `📌` line number tag — **always traceable back to the original request.**
+**效果**：`📌` 标记永远能追溯到原始需求行号，再也不丢失。
 
 ---
 
-## Who Is This For
+## 适合哪些人
 
-- Developers who use Claude Code daily
-- Solo builders who want to remember what they built
-- Anyone frustrated by losing AI context between sessions
-
----
-
-## Features
-
-| Feature | AI00 | Plain CLAUDE.md | Cursor Rules |
-|---------|------|-----------------|--------------|
-| Line-number traceability | ✅ every answer | ❌ | ❌ |
-| Session auto-archive | ✅ RESUME.md | ❌ | ❌ |
-| Multi-project management | ✅ PROJECTS_INDEX | ❌ | ❌ |
-| 42 help articles | ✅ | ❌ | ❌ |
-| Slash commands (14) | ✅ | few | few |
-| Rule inheritance system | ✅ R01–R10 | single file | single file |
-| AI memory across sessions | ✅ | ❌ | ❌ |
+- 每天用 Claude Code 工作的开发者
+- 独立开发者（想记住自己做了什么）
+- 对 AI 会话上下文丢失感到头疼的人
 
 ---
 
-## Key Trigger Words
+## 特性对比
 
-| Say this | AI does this |
-|---------|-------------|
-| `req line X onwards` | Read from line X, write answer to reply |
-| `new project xxx` | Auto-create folder + register in PROJECTS_INDEX |
-| `draft update` | Read draft → append to req → answer → clear draft |
-| `goodbye` | Auto-archive + update RESUME.md for next session |
+| 特性 | AI00 | 普通 CLAUDE.md | Cursor Rules |
+|------|------|---------------|--------------|
+| 行号可追溯 | ✅ 每条标行号 | ❌ | ❌ |
+| 会话自动存档 | ✅ RESUME.md | ❌ | ❌ |
+| 多项目管理 | ✅ PROJECTS_INDEX | ❌ | ❌ |
+| 42篇帮助文档 | ✅ | ❌ | ❌ |
+| Slash 命令（14个）| ✅ | 少 | 少 |
+| 规则继承系统 | ✅ R01–R10 | 单文件 | 单文件 |
+| 跨会话 AI 记忆 | ✅ | ❌ | ❌ |
 
 ---
 
-## Directory Structure
+## 关键触发词
+
+| 说这句话 | AI 执行 |
+|---------|---------|
+| `req X行以后` | 从第 X 行读 req，回答写入 reply |
+| `建项目 xxx` | 自动建文件夹 + 注册到 PROJECTS_INDEX |
+| `草稿更新` | 读草稿 → 追加到 req → 回答 → 清空草稿 |
+| `再见` | 自动存档 + 更新 RESUME.md，下次接着来 |
+
+---
+
+## 目录结构
 
 ```
 T00/
-├── CLAUDE.md                    ← Root rules (auto-loaded)
+├── CLAUDE.md                    ← 根规则（自动加载）
 ├── AI00_Common/
-│   ├── CLAUDE.md                ← Shared rules (workflow protocol)
-│   ├── rules/                   ← AI behavior rules (R01–R10)
-│   ├── .claude/commands/        ← Slash commands (/t00-*)
+│   ├── CLAUDE.md                ← 通用规则（含沟通协议）
+│   ├── rules/                   ← AI 行为规则（R01–R10）
+│   ├── .claude/commands/        ← Slash 命令（/t00-*）
 │   └── projects/PROJECTS_INDEX.md
-├── temp01_req.md                ← Write your requests here
-├── temp02_draft.md              ← Draft area
-├── temp03_reply.md              ← AI writes answers here
-└── PJxx_project-name/           ← Individual project folders
+├── temp01_req.md                ← 用户写需求
+├── temp02_草稿.md               ← 草稿区
+├── temp03_reply.md              ← AI 写回答
+└── PJxx_项目名/                  ← 各项目文件夹
 ```
 
 ---
 
-## Help Documentation
+## 帮助文档
 
-42 articles covering everything from basics to advanced workflows.
+42 篇使用指南，覆盖从入门到高级的全部用法。
 
-| Category | File | Content |
-|----------|------|---------|
-| Start here | H38_quick_start.md | 5-minute onboarding |
-| Workflow | H02_req_reply_workflow.md | Full req→reply flow |
-| Commands | H28_slash_commands_guide.md | All slash commands |
-| Publish | H13_github_publish.md | GitHub publishing guide |
-| Cheatsheet | H25_prompt_cheatsheet.md | All trigger words |
+| 类别 | 文件 | 内容 |
+|------|------|------|
+| 入门必读 | H38_quick_start.md | 5分钟上手 |
+| 工作流 | H02_req_reply_workflow.md | req→reply 完整流程 |
+| 命令 | H28_slash_commands_guide.md | 全部 Slash 命令说明 |
+| 发布 | H13_github_publish.md | GitHub 发布指南 |
+| 速查 | H25_prompt_cheatsheet.md | 常用触发词汇总 |
 
-**Generate a single HTML file** (readable on mobile):
+**生成单文件 HTML**（手机可用）：
 
 ```powershell
 .\AI00_Common\_docs\gen_help_html.ps1
@@ -129,31 +128,31 @@ T00/
 
 ---
 
-## Setup
+## 上手步骤
 
-1. Clone this repo
-2. Open the folder in Claude Code (`claude` CLI or VS Code extension)
-3. Write your first request in `temp01_req.md`
-4. Tell Claude: `req 1 onwards`
+1. Clone 本仓库
+2. 用 Claude Code 打开（`claude` CLI 或 VS Code 扩展）
+3. 在 `temp01_req.md` 写第一条需求
+4. 对 AI 说：`req 1 以后`
 
-That's it. No installs, no config files, no API keys needed.
-
----
-
-## Contact
-
-Questions or feedback? [Open an issue](https://github.com/maysunAI/T00/issues)
-
-GitHub: [@maysunAI](https://github.com/maysunAI)
+无需安装任何依赖，无需配置文件，无需 API Key。
 
 ---
 
-## License
+## 联系方式
 
-[MIT License](LICENSE) — free to use, modify, and distribute.
+有问题或建议？[提交 Issue](https://github.com/maysunAI/T00/issues)
+
+GitHub：[@maysunAI](https://github.com/maysunAI)
 
 ---
 
-> ⭐ **If AI00 saves you time, a star helps others find it.** ⭐
+## 开源协议
+
+[MIT License](LICENSE) — 自由使用、修改、分发。
+
+---
+
+> ⭐ **如果 AI00 帮到了你，点个 Star 让更多人发现它。** ⭐
 >
-> [Star on GitHub →](https://github.com/maysunAI/T00)
+> [在 GitHub 上 Star →](https://github.com/maysunAI/T00)
